@@ -36,7 +36,6 @@ import {
   SellQuoteInputResult,
   WithdrawResult,
 } from "../types/sdk";
-import { SYSTEM_PROGRAM_ID } from "@coral-xyz/anchor/dist/cjs/native/system";
 import { getPumpAmmProgram } from "./util";
 
 export class PumpAmmInternalSdk {
@@ -328,7 +327,7 @@ export class PumpAmmInternalSdk {
 
   private async accountExists(account: PublicKey): Promise<boolean> {
     const accountInfo = await this.connection.getAccountInfo(account);
-    return accountInfo !== null && !accountInfo.owner.equals(SYSTEM_PROGRAM_ID);
+    return accountInfo !== null && !accountInfo.owner.equals(SystemProgram.programId);
   }
 
   async depositBaseInputInternal(
